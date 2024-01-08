@@ -1,0 +1,32 @@
+using FluentAssertions;
+using Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion;
+using Xunit.Abstractions;
+
+namespace Frank.SemanticKernel.Tests.Connectors.OnnxRuntime;
+
+public class TextToImagesServiceTests
+{
+    private readonly ITestOutputHelper _testOutputHelper;
+
+    public TextToImagesServiceTests(ITestOutputHelper testOutputHelper)
+    {
+        _testOutputHelper = testOutputHelper;
+    }
+    
+    [Fact]
+    public void Test1()
+    {
+        // Arrange
+        var service = new StableDiffusionTextToImageService();
+        var value = new DirectoryInfo(Directory.GetCurrentDirectory());
+        service.AddPersistentOutputDirectory(value);
+        
+        // Act
+        var result = service.Attributes[StableDiffusionTextToImageService.PERSISTENT_OUTPUT_DIRECTORY_KEY] as DirectoryInfo;
+        
+        // Assert
+        Assert.NotNull(result);
+        _testOutputHelper.WriteLine(result.FullName);
+        result.Should().Be(value);
+    }
+}

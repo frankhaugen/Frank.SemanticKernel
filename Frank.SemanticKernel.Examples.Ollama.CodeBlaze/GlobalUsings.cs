@@ -2,8 +2,6 @@
 
 global using Codeblaze.SemanticKernel.Connectors.Ollama;
 global using Frank.SemanticKernel.Examples.Ollama;
-global using Frank.SemanticKernel.Examples.Ollama.Configurations;
-global using Frank.SemanticKernel.Examples.Ollama.Wrappers;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;

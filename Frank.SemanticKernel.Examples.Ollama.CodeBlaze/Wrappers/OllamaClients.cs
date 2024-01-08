@@ -1,4 +1,4 @@
-﻿namespace Frank.SemanticKernel.Examples.Ollama.Wrappers;
+﻿namespace Frank.SemanticKernel.Examples.Ollama.CodeBlaze.Wrappers;
 
 public class OllamaClients : IOllamaClients
 {
@@ -11,7 +11,7 @@ public class OllamaClients : IOllamaClients
         _lazyTextGenerationService = new OllamaTextGenerationService(optionsUncensoredLlama2.Value.ModelName, optionsUncensoredLlama2.Value.BaseUrl, httpClientFactory.CreateClient(), loggerFactory);
     }
     
-    public IChatCompletionService CompletionService => _lazyCompletionService;
+    public OllamaChatCompletionService ChatService => _lazyCompletionService;
     
-    public ITextGenerationService TextGenerationService => _lazyTextGenerationService;
+    public OllamaTextGenerationService GenerationService => _lazyTextGenerationService;
 }

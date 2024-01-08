@@ -1,4 +1,7 @@
 using Frank.SemanticKernel.Examples.Core;
+using Frank.SemanticKernel.Examples.Ollama.CodeBlaze.Wrappers;
+
+namespace Frank.SemanticKernel.Examples.Ollama.CodeBlaze;
 
 public class TextGenerationDemo : ITextGenerationDemo
 {
@@ -13,12 +16,15 @@ public class TextGenerationDemo : ITextGenerationDemo
 
     public async Task StartAsync()
     {
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        
         var promptActions = new Dictionary<string, Func<string, Task>>
         {
             {"1.\tPrompt kernel", async _ => await PromptUserAsync()},
+            {"2.\tExit", async _ => await cancellationTokenSource.CancelAsync() },
         };
 
-        await _consoleHelper.StartAsync("Ollama", promptActions, CancellationToken.None);
+        await _consoleHelper.StartAsync("Ollama", promptActions, cancellationTokenSource.Token);
     }
 
     private async Task PromptUserAsync()
@@ -27,10 +33,10 @@ public class TextGenerationDemo : ITextGenerationDemo
         
         await _consoleHelper.WriteProcessingAsync(userPrompt, async ctx =>
         {
-            var result = await _ollamaClients.TextGenerationService.GetTextContentsAsync(ctx.Text ?? string.Empty);
+            var result = await _ollamaClients.GenerationService.GetTextContentsAsync(ctx.Text ?? string.Empty);
             var text = string.Join("", result.Select(x => x.Text));
         
-            _consoleHelper.WriteBox("Result", "AI", text, "Result", Color.Green);
+            _consoleHelper.WriteBox(text, "Result", Color.Green);
             
             return await Task.FromResult(text);
         });

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Examples.Ollama", "Frank.SemanticKernel.Examples.Ollama\Frank.SemanticKernel.Examples.Ollama.csproj", "{9F0CAAD1-D0FB-4A61-B6AC-9E8D3A65BB5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Examples.Ollama.CodeBlaze", "Frank.SemanticKernel.Examples.Ollama.CodeBlaze\Frank.SemanticKernel.Examples.Ollama.CodeBlaze.csproj", "{9F0CAAD1-D0FB-4A61-B6AC-9E8D3A65BB5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{024FFDBD-870C-4DFF-98D7-3B3D574AFCC6}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,6 +16,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Examples.Core", "Frank.SemanticKernel.Examples.Core\Frank.SemanticKernel.Examples.Core.csproj", "{732F5189-497A-49A9-A8CB-1D5EE92165AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Connectors.Ollama", "Frank.SemanticKernel.Connectors.Ollama\Frank.SemanticKernel.Connectors.Ollama.csproj", "{19011C2C-85CF-45CE-8CF6-B200DE929D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion", "Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion\Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion.csproj", "{06F46212-36EB-4A4A-AF11-0500AF8AF159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Extensions.NsfwSpyDotNet", "Frank.SemanticKernel.Extensions.NsfwSpyDotNet\Frank.SemanticKernel.Extensions.NsfwSpyDotNet.csproj", "{8886CC42-4805-4590-99A2-1BCDE26E2FD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Tests", "Frank.SemanticKernel.Tests\Frank.SemanticKernel.Tests.csproj", "{93BF801A-1E4D-4789-B8B3-BF29E8349F3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion", "Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion\Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion.csproj", "{66471FC2-15AF-4D4F-8E67-BDF9B7E1CC53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +44,25 @@ Global
 		{732F5189-497A-49A9-A8CB-1D5EE92165AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{732F5189-497A-49A9-A8CB-1D5EE92165AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{732F5189-497A-49A9-A8CB-1D5EE92165AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19011C2C-85CF-45CE-8CF6-B200DE929D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19011C2C-85CF-45CE-8CF6-B200DE929D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19011C2C-85CF-45CE-8CF6-B200DE929D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19011C2C-85CF-45CE-8CF6-B200DE929D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F46212-36EB-4A4A-AF11-0500AF8AF159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F46212-36EB-4A4A-AF11-0500AF8AF159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F46212-36EB-4A4A-AF11-0500AF8AF159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F46212-36EB-4A4A-AF11-0500AF8AF159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8886CC42-4805-4590-99A2-1BCDE26E2FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8886CC42-4805-4590-99A2-1BCDE26E2FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8886CC42-4805-4590-99A2-1BCDE26E2FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8886CC42-4805-4590-99A2-1BCDE26E2FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93BF801A-1E4D-4789-B8B3-BF29E8349F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93BF801A-1E4D-4789-B8B3-BF29E8349F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93BF801A-1E4D-4789-B8B3-BF29E8349F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93BF801A-1E4D-4789-B8B3-BF29E8349F3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66471FC2-15AF-4D4F-8E67-BDF9B7E1CC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66471FC2-15AF-4D4F-8E67-BDF9B7E1CC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66471FC2-15AF-4D4F-8E67-BDF9B7E1CC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66471FC2-15AF-4D4F-8E67-BDF9B7E1CC53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

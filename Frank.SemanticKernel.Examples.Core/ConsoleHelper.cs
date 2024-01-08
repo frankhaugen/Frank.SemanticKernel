@@ -4,11 +4,14 @@ namespace Frank.SemanticKernel.Examples.Core;
 
 public class ConsoleHelper : IConsoleHelper
 {
+    public void WriteBanner(string banner)
+    {
+        AnsiConsole.Write(new FigletText(banner).Color(Color.Green));
+        AnsiConsole.WriteLine("");
+    }
+    
     public async Task StartAsync(string appBanner, Dictionary<string, Func<string, Task>> promptActions, CancellationToken cancellationToken)
     {
-        AnsiConsole.Write(new FigletText(appBanner).Color(Color.Green));
-        AnsiConsole.WriteLine("");
-
         await WriteProcessingAsync<string>("Initializing...", async ctx => await Task.FromResult("Initialized"));
 
         if (!promptActions.ContainsKey("Exit") && !promptActions.ContainsKey("exit") && !promptActions.ContainsKey("EXIT") && !promptActions.ContainsKey("eXIT") && !promptActions.ContainsKey("Quit") && !promptActions.ContainsKey("quit") && !promptActions.ContainsKey("QUIT") && !promptActions.ContainsKey("qUIT") && !promptActions.ContainsKey("Close") && !promptActions.ContainsKey("close") && !promptActions.ContainsKey("CLOSE") && !promptActions.ContainsKey("cLOSE"))
@@ -23,10 +26,10 @@ public class ConsoleHelper : IConsoleHelper
             }
         }
         
-        await PromptUserAsync(promptActions);
+        await PromptUserAsync(promptActions, cancellationToken);
     }
     
-    private static async Task PromptUserAsync(Dictionary<string, Func<string, Task>> promptActions)
+    private static async Task PromptUserAsync(Dictionary<string, Func<string, Task>> promptActions, CancellationToken cancellationToken)
     {
         var option = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
@@ -41,10 +44,14 @@ public class ConsoleHelper : IConsoleHelper
             await action(option);
         }
         
-        await PromptUserAsync(promptActions);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
+        await PromptUserAsync(promptActions, cancellationToken);
     }
     
-    public void WriteError(string error) => WriteBox("Error", "Error", error, "Error", Color.Red);
+    public void WriteError(string error) => WriteBox("Error", error, Color.Red);
 
     public async Task<T> WriteProcessingAsync<T>(string userPrompt, Func<UserInput, Task<T>> action) =>
         await AnsiConsole.Status().StartAsync("Processing...", async ctx =>
@@ -55,11 +62,9 @@ public class ConsoleHelper : IConsoleHelper
             return await action(new UserInput() {Text = userPrompt});
         });
 
-    public void WriteBox(string banner, string name, string text, string header, Color borderColor)
+    public void WriteBox(string text, string header, Color borderColor)
     {
         AnsiConsole.WriteLine("");
-        AnsiConsole.Write(new Rule($"[cyan]{banner}[/]") { Justification = Justify.Center });
-        AnsiConsole.WriteLine(name);
         AnsiConsole.Write(new Panel(text)
             .Header(header)
             .Expand()

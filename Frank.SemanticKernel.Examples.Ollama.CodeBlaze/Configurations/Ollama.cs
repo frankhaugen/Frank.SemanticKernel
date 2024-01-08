@@ -1,4 +1,4 @@
-namespace Frank.SemanticKernel.Examples.Ollama.Configurations;
+namespace Frank.SemanticKernel.Examples.Ollama.CodeBlaze.Configurations;
 
 public class Ollama
 {

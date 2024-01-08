@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Frank.Testing.Logging" Version="1.2.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="xunit" Version="2.6.5" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.6">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Frank.SemanticKernel.Connectors.Ollama\Frank.SemanticKernel.Connectors.Ollama.csproj" />
+      <ProjectReference Include="..\Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion\Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion.csproj" />
+      <ProjectReference Include="..\Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion\Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion.csproj" />
+      <ProjectReference Include="..\Frank.SemanticKernel.Examples.Ollama.CodeBlaze\Frank.SemanticKernel.Examples.Ollama.CodeBlaze.csproj" />
+      <ProjectReference Include="..\Frank.SemanticKernel.Extensions.NsfwSpyDotNet\Frank.SemanticKernel.Extensions.NsfwSpyDotNet.csproj" />
+    </ItemGroup>
+
+</Project>
