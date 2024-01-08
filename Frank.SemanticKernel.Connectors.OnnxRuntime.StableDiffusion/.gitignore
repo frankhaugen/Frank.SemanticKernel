@@ -1,1 +1,3 @@
 .temp_repo/
+models/**/*.onnx
+models/**/*.pb
