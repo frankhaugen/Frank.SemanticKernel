@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion;
+using Frank.Testing.Logging;
 using Xunit.Abstractions;
 
 namespace Frank.SemanticKernel.Tests.Connectors.OnnxRuntime;
@@ -17,7 +18,7 @@ public class TextToImagesServiceExtensionsTests
     public void Test1()
     {
         // Arrange
-        var service = new StableDiffusionTextToImageService();
+        var service = new StableDiffusionTextToImageService(_testOutputHelper.CreateTestLogger<StableDiffusionTextToImageService>());
         var value = new DirectoryInfo(Directory.GetCurrentDirectory());
         service.AddPersistentOutputDirectory(value);
         

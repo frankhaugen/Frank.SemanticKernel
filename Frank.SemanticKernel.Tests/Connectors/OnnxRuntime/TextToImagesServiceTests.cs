@@ -1,5 +1,6 @@
-using FluentAssertions;
+using System.Text;
 using Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion;
+using Frank.Testing.Logging;
 using Xunit.Abstractions;
 
 namespace Frank.SemanticKernel.Tests.Connectors.OnnxRuntime;
@@ -14,19 +15,18 @@ public class TextToImagesServiceTests
     }
     
     [Fact]
-    public void Test1()
+    public async Task TestAsync()
     {
         // Arrange
-        var service = new StableDiffusionTextToImageService();
+        var service = new StableDiffusionTextToImageService(_testOutputHelper.CreateTestLogger<StableDiffusionTextToImageService>());
         var value = new DirectoryInfo(Directory.GetCurrentDirectory());
         service.AddPersistentOutputDirectory(value);
         
         // Act
-        var result = service.Attributes[StableDiffusionTextToImageService.PERSISTENT_OUTPUT_DIRECTORY_KEY] as DirectoryInfo;
+        var result = await service.GenerateImageAsync("Hello world!", 512, 512);
+        await File.WriteAllBytesAsync(Path.Combine(value.FullName, "test.png"), Encoding.UTF8.GetBytes(result));
         
         // Assert
-        Assert.NotNull(result);
-        _testOutputHelper.WriteLine(result.FullName);
-        result.Should().Be(value);
+        _testOutputHelper.WriteLine(Path.Combine(value.FullName, "test.png"));
     }
 }

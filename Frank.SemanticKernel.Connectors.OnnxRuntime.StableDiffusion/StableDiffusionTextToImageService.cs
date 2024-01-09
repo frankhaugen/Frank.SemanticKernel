@@ -1,5 +1,8 @@
-﻿using Microsoft.SemanticKernel;
+﻿using System.Text;
+using Microsoft.Extensions.Logging;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.TextToImage;
+using SixLabors.ImageSharp.Formats.Png;
 using StableDiffusion.ML.OnnxRuntime;
 
 namespace Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion;
@@ -15,25 +18,25 @@ public class StableDiffusionTextToImageService : ITextToImageService
     public const string UNET_PATH = "unet/model.onnx";
     public const string TEXT_ENCODER = "text_encoder/model.onnx";
     public const string PERSISTENT_OUTPUT_DIRECTORY_KEY = "PersistentOutputDirectory";
+    
+    private readonly ILogger<StableDiffusionTextToImageService> _logger;
+
+    public StableDiffusionTextToImageService(ILogger<StableDiffusionTextToImageService> logger)
+    {
+        _logger = logger;
+    }
 
     internal Dictionary<string, object?> InternalAttributes { get; } = new Dictionary<string, object?>();
     
     public IReadOnlyDictionary<string, object?> Attributes => InternalAttributes;
     
-    public async Task<string> GenerateImageAsync(string description, int width, int height, Kernel? kernel = null, CancellationToken cancellationToken = new CancellationToken())
+    public async Task<string> GenerateImageAsync(string description, int width, int height, Kernel? kernel = null, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
-    }
-    
-    public void Run(DirectoryInfo? executionDirectory = null)
-    {
-        if (executionDirectory == null)
-        {
-            executionDirectory = new DirectoryInfo(AppContext.BaseDirectory);
-        }
-
-        var modelsDirectory = executionDirectory.CreateSubdirectory("models");
-
+        var directory = InternalAttributes[PERSISTENT_OUTPUT_DIRECTORY_KEY] as DirectoryInfo;
+        if (directory == null)
+            throw new InvalidOperationException($"The '{PERSISTENT_OUTPUT_DIRECTORY_KEY}' attribute must be set before calling this method.");
+        
+        var modelsDirectory = directory.CreateSubdirectory("models");
         EnsureModelsExist(modelsDirectory);
         
         //test how long this takes to execute
@@ -41,7 +44,7 @@ public class StableDiffusionTextToImageService : ITextToImageService
 
         //Default args
         var prompt = "A cat with a lightsaber fighting a dog with a two-sided lightsaber-staff.";
-        Console.WriteLine(prompt);
+        _logger.LogInformation(prompt);
 
         var config = new StableDiffusionConfig
         {
@@ -69,12 +72,16 @@ public class StableDiffusionTextToImageService : ITextToImageService
         // If image failed or was unsafe it will return null.
         if (image == null)
         {
-            Console.WriteLine("Unable to create image, please try again.");
+            _logger.LogError("Unable to create image, please try again.");
         }
         // Stop the timer
         watch.Stop();
         var elapsedMs = watch.ElapsedMilliseconds;
-        Console.WriteLine("Time taken: " + elapsedMs + "ms");
+        _logger.LogInformation("Time taken: " + elapsedMs + "ms");
+        
+        using var imageStream = new MemoryStream(); 
+        await image!.SaveAsync(imageStream, new PngEncoder(), cancellationToken);
+        return Encoding.UTF8.GetString(imageStream.ToArray());
     }
 
     /// <summary>
