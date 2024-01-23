@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="PdfLibCore.ImageSharp" Version="2.5.0" />
+      <PackageReference Include="PDFsharp" Version="6.0.0" />
+      <PackageReference Include="TesseractOCR" Version="5.3.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="tessdata\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

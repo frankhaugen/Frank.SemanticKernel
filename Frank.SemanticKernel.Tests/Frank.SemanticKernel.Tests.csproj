@@ -25,6 +25,7 @@
       <ProjectReference Include="..\Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion\Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion.csproj" />
       <ProjectReference Include="..\Frank.SemanticKernel.Examples.Ollama.CodeBlaze\Frank.SemanticKernel.Examples.Ollama.CodeBlaze.csproj" />
       <ProjectReference Include="..\Frank.SemanticKernel.Extensions.NsfwSpyDotNet\Frank.SemanticKernel.Extensions.NsfwSpyDotNet.csproj" />
+      <ProjectReference Include="..\Frank.SemanticKernel.Plugins.Ocr\Frank.SemanticKernel.Plugins.Ocr.csproj" />
     </ItemGroup>
 
 </Project>
