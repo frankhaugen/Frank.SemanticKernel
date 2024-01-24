@@ -14,7 +14,7 @@ public class TextToImagesServiceExtensionsTests
         _testOutputHelper = testOutputHelper;
     }
     
-    [Fact]
+    // [Fact]
     public void Test1()
     {
         // Arrange

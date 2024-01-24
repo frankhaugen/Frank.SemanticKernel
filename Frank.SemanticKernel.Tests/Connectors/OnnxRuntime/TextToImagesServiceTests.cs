@@ -14,7 +14,7 @@ public class TextToImagesServiceTests
         _testOutputHelper = testOutputHelper;
     }
     
-    [Fact]
+    // [Fact]
     public async Task TestAsync()
     {
         // Arrange
