@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using OllamaSharp;
 using OllamaSharp.Models.Chat;
@@ -35,7 +36,7 @@ public class OllameChatCompletionService : IChatCompletionService
         return responses.Select(message => new ChatMessageContent(AuthorRole.Assistant, message.Content, modelId: chat.Model)).ToList().AsReadOnly();
     }
 
-    public async IAsyncEnumerable<StreamingChatMessageContent> GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings? executionSettings = null, Kernel? kernel = null, CancellationToken cancellationToken = new CancellationToken())
+    public async IAsyncEnumerable<StreamingChatMessageContent> GetStreamingChatMessageContentsAsync(ChatHistory chatHistory, PromptExecutionSettings? executionSettings = null, Kernel? kernel = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var messages = new List<StreamingChatMessageContent>();
         var responseStreamer = new ActionResponseStreamer<ChatResponseStream>(x =>

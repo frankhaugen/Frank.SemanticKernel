@@ -5,4 +5,3 @@ global using Microsoft.SemanticKernel;
 global using Spectre.Console;
 global using System;
 global using System.Collections.Generic;
-global using Spectre.Console;
