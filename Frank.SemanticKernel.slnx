@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="icon.png" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Frank.SemanticKernel.Connectors.Ollama/Frank.SemanticKernel.Connectors.Ollama.csproj" />
+  <Project Path="Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion/Frank.SemanticKernel.Connectors.OnnxRuntime.StableDiffusion.csproj" />
+  <Project Path="Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion/Frank.SemanticKernel.Connectors.OnnxStack.StableDiffusion.csproj" />
+  <Project Path="Frank.SemanticKernel.Examples.Core/Frank.SemanticKernel.Examples.Core.csproj" />
+  <Project Path="Frank.SemanticKernel.Examples.Ollama.CodeBlaze/Frank.SemanticKernel.Examples.Ollama.CodeBlaze.csproj" />
+  <Project Path="Frank.SemanticKernel.Extensions.NsfwSpyDotNet/Frank.SemanticKernel.Extensions.NsfwSpyDotNet.csproj" />
+  <Project Path="Frank.SemanticKernel.Plugins.Ocr/Frank.SemanticKernel.Plugins.Ocr.csproj" />
+  <Project Path="Frank.SemanticKernel.Testcontainers/Frank.SemanticKernel.Testcontainers.csproj" />
+  <Project Path="Frank.SemanticKernel.Tests/Frank.SemanticKernel.Tests.csproj" />
+</Solution>
