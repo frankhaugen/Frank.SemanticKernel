@@ -1,7 +1,7 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using OllamaSharp;
-using OllamaSharp.Models;
+using OllamaSharp.Models.Chat;
 using OllamaSharp.Streamer;
 
 namespace Frank.SemanticKernel.Connectors.Ollama;
